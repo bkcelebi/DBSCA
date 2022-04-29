@@ -1,29 +1,11 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Test API Client</title>
-    <script>
-    let doIt=()=>{
-      let tab=document.getElementById("tab1");
-      let rows=tab1.getElementsByTagName('tr');
-      fetch('https://burak.dbsprojects.ie:8080/')
-        .then(response => response.json())
-        .then(data=>data.Results.forEach(  //.slice(0,3)
-          x=>{
-            let newRow=rows[0].cloneNode(true);
-            let divs=newRow.getElementsByTagName('td');
-            divs[0].innerHTML=x['ID'];
-            divs[1].innerHTML=x['Name'];
-            divs[2].innerHTML=x['Email'];
-            tab1.appendChild(newRow);
-          }
-        )
-      );
-    }
-    </script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   </head>
   <body>
     <button onClick="doIt()">Press me</button>
@@ -33,35 +15,40 @@
       <tr><td>ID</td><td>Name</td><td>Email</td></tr>
     </table>
 
-    <label for='Id'>Type Id number for delete</label><br/>
-    <input type='text' id="deleteEnt">
+    <form>
+      <fieldset>
+        <legend>Add data</legend>
+        <label for="studentId">Enter Student ID</label>
+        <input type="text" id="studentId" name="studentId">
+        <label for="studentName">Enter Student Name</label>
+        <input type="text" id="studentName" name="studentName">
+        <label for="studentMail">Enter Student Mail</label>
+        <input type="text" id="studentMail" name="studentMail">
+        <button onClick="addStudent()">Click to Add</button>
+      </fieldset>
+    </form>
 
-    <button onClick="deleteStudent()">Click Me</button>
-    <br><br>
+    <form>
+      <fieldset>
+        <legend>Delete data</legend>
+        <label for='Id'>Type Id number for delete</label><br/>
+        <input type='text' id="deleteEnt">
+        <button onClick="deleteStudent()">Click to Delete</button>
+      </fieldset>
+    </form>
 
-    <script>
-      let baseURL='https://burak.dbsprojects.ie:8080/';
-      let deleteStudent = () => {      
-        fetch(baseURL+'delete?id='+deleteEnt.value)
-        .then((resp) => {alert("Student Deleted");}
-      );}
-    </script>
-
-
-    <label for='updateID'>Type Id number to update</label>
-    <input type="text" name="updateID" id="updateID">
-    <label for='updateName'>Enter a new name</label>
-    <input type="text" name="updateName" id="updateName">
-    <label for='updateEmail'>Enter a new email</label>
-    <input type="text" name="updateEmail" id="updateEmail">
-    <button onClick="updateStudent()"> Click to update </button>
-
-    <script>
-      let updateStudent = () => {
-        fetch(baseURL+'update?id='+updateID.value+'&name='+updateName.value+'&email='+updateEmail.value)
-        .then((resp) => {alert("Student Updated");}
-      );}
-    </script>
+    <form>
+      <fieldset>
+        <legend>Update data</legend>
+        <label for='updateID'>Type Id number to update</label>
+        <input type="text" name="updateID" id="updateID">
+        <label for='updateName'>Enter a new name</label>
+        <input type="text" name="updateName" id="updateName">
+        <label for='updateEmail'>Enter a new email</label>
+        <input type="text" name="updateEmail" id="updateEmail">
+        <button onClick="updateStudent()"> Click to update </button>
+      </fieldset>
+    </form>
 
   </body>
 </html>
