@@ -26,15 +26,15 @@ fetch(baseURL).then(
                 console.log(data);
                 if(data.length > 0){
                     var temp = "";
-                    data.forEach((x) => {
+                    data.forEach((u) => {
                         temp += "<tr>";
-                        temp += "<td>"+x.ID+"</td>";
-                        temp += "<td>"+x.Name+"</td>";
-                        temp += "<td>"+x.Email+"</td></tr>";
+                        temp += "<td>"+u.ID+"</td>";
+                        temp += "<td>"+u.Name+"</td>";
+                        temp += "<td>"+u.Email+"</td></tr>";
                     })
 
-                    document.getElementById('data').innerHTML = temp;
-                }
+                    document.getElementById('tableBody').innerHTML = temp;
+                }  
             }
         )
     }
@@ -45,6 +45,7 @@ let deleteStudent = () => {
     let deleteEnt = document.getElementById('deleteEnt').value;   
     fetch(baseURL+'delete?id='+deleteEnt)
     .then((resp) => {
+        location.reload();
         alert("Student Deleted");
     });
 }
@@ -55,6 +56,7 @@ let updateStudent = () => {
     let updateEmail = document.getElementById('updateEmail').value;
     fetch(baseURL+'update?id='+updateID+'&name='+updateName+'&email='+updateEmail)
     .then((resp) => {
+        location.reload();
         alert("Student Updated");
     });
 }
@@ -65,6 +67,7 @@ let addStudent = () => {
     let studentMail = document.getElementById('studentMail').value;
     fetch(baseURL+'add?id='+studentId+'&name='+studentName+'&email='+studentMail)
     .then((resp) => {
+        location.reload();
         alert("Student Added");
     });
 }
